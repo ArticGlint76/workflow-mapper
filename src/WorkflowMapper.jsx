@@ -54,12 +54,12 @@ function makeCard(x, y) {
 
 function makeDefault() {
   const cards = [
-    { ...makeCard(120, 100), title: "Identify Stakeholders" },
-    { ...makeCard(360, 100), title: "Gather Requirements" },
-    { ...makeCard(360, 240), title: "Define Success Criteria" },
-    { ...makeCard(600, 170), title: "Build Prototype" },
-    { ...makeCard(840, 100), title: "Test & Validate", color: "amber" },
-    { ...makeCard(840, 240), title: "Deploy", color: "green" },
+    { ...makeCard(140, 200), title: "Identify Stakeholders" },
+    { ...makeCard(380, 200), title: "Gather Requirements" },
+    { ...makeCard(380, 330), title: "Define Success Criteria" },
+    { ...makeCard(620, 265), title: "Build Prototype" },
+    { ...makeCard(860, 200), title: "Test & Validate", color: "amber" },
+    { ...makeCard(860, 330), title: "Deploy", color: "green" },
   ];
   const conns = [
     { id: uid(), from: cards[0].id, to: cards[1].id, label: "" },
@@ -365,8 +365,8 @@ export default function WorkflowMapper() {
         style={{
           flex: 1, overflow: "hidden", position: "relative",
           cursor: panning ? "grabbing" : linking ? "crosshair" : "default",
-          backgroundImage: `radial-gradient(circle, ${C.border}66 1px, transparent 1px)`,
-          backgroundSize: "24px 24px",
+          backgroundImage: `linear-gradient(${C.border}33 1px, transparent 1px), linear-gradient(90deg, ${C.border}33 1px, transparent 1px)`,
+          backgroundSize: "32px 32px",
           backgroundPosition: `${pan.x * zoom}px ${pan.y * zoom}px`,
         }}
       >
