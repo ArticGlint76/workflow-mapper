@@ -228,15 +228,35 @@ function makeMeta() {
 
 function makeInitialState() {
   const cols = [
-    { id: uid(), name: "Phase 1" },
-    { id: uid(), name: "Phase 2" },
-    { id: uid(), name: "Phase 3" },
+    { id: uid(), name: "Discover" },
+    { id: uid(), name: "Define" },
+    { id: uid(), name: "Build" },
+    { id: uid(), name: "Deliver" },
   ];
   const lanes = [
-    { id: uid(), name: "Lane 1", color: 0 },
-    { id: uid(), name: "Lane 2", color: 1 },
+    { id: uid(), name: "People", color: 0 },
+    { id: uid(), name: "Process", color: 1 },
+    { id: uid(), name: "Technology", color: 2 },
   ];
-  return { cols, lanes, cards: [], conns: [] };
+  const c1 = { ...makeCard(lanes[0].id, cols[0].id), title: "Identify Stakeholders", status: "done" };
+  const c2 = { ...makeCard(lanes[1].id, cols[0].id), title: "Map Current State", status: "active" };
+  const c3 = { ...makeCard(lanes[0].id, cols[1].id), title: "Gather Requirements", status: "active" };
+  const c4 = { ...makeCard(lanes[1].id, cols[1].id), title: "Define Success Criteria" };
+  const c5 = { ...makeCard(lanes[2].id, cols[2].id), title: "Build Prototype", status: "draft" };
+  const c6 = { ...makeCard(lanes[1].id, cols[2].id), title: "Test & Validate" };
+  const c7 = { ...makeCard(lanes[2].id, cols[3].id), title: "Deploy to Production" };
+  const c8 = { ...makeCard(lanes[0].id, cols[3].id), title: "Train End Users" };
+  const cards = [c1, c2, c3, c4, c5, c6, c7, c8];
+  const conns = [
+    { id: uid(), from: c1.id, to: c3.id, type: "flow", label: "" },
+    { id: uid(), from: c2.id, to: c4.id, type: "flow", label: "" },
+    { id: uid(), from: c3.id, to: c5.id, type: "flow", label: "" },
+    { id: uid(), from: c4.id, to: c6.id, type: "flow", label: "" },
+    { id: uid(), from: c5.id, to: c7.id, type: "flow", label: "" },
+    { id: uid(), from: c6.id, to: c5.id, type: "feedback", label: "iterate" },
+    { id: uid(), from: c7.id, to: c8.id, type: "dependency", label: "" },
+  ];
+  return { cols, lanes, cards, conns };
 }
 
 /* ══════ HELPERS ══════ */
